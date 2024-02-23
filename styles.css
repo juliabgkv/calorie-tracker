@@ -1,3 +1,5 @@
-.modal-window {
-    display: none;
+.dialog {
+    border: none;
+    text-align: center;
 }
+

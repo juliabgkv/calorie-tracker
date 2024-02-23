@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
-    <dialog id="goalSetupDialog">
-        <p>Welcome! Please, set up your calories goal per day:</p>
-        <form method="dialog" id="">
+    <dialog id="goalSetupDialog" class="dialog">
+        <p>Please, set up your calories goal per day:</p>
+        <form method="dialog" id="goalForm">
             <input type="number" id="goalInput" value="2000" step="100" min="1200" max="5000" />
             <button>Continue</button>
         </form>
@@ -18,17 +18,21 @@
     <div class="container">
         <div class="header">
             <div class="logo">Calorie Tracker</div>
-            <button>Clear All</button>
         </div>
         <div>
             <!-- circle with goal progress -->
+            <div>
+                <span id="total">0</span>/<span id="goal">0</span>
+                <button id="editGoalBtn">Edit Goal</button>
+            </div>
         </div>
         <div>
-            <form id="">
-                <input type="text" placeholder="Meal" />
-                <input type="text" placeholder="Calories">
+            <form id="mealForm">
+                <input type="text" placeholder="Meal" name="meal" />
+                <input type="text" placeholder="Calories" name="calories">
                 <button>Add</button>
             </form>
+            <button>Clear All</button>
             <ul>
                 <li>
                     <div>
