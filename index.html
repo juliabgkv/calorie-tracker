@@ -27,27 +27,30 @@
             </div>
         </div>
         <div>
-            <form id="mealForm">
-                <input type="text" placeholder="Meal" name="meal" />
-                <input type="text" placeholder="Calories" name="calories">
-                <button>Add</button>
+            <form id="mealForm" data-mode="add" class="meal-form">
+                <div>
+                    <input type="number" id="mealIdInput" class="meal-id-input" />
+                    <input type="text" placeholder="Meal" id="mealInput" required />
+                    <input type="number" placeholder="Calories" id="caloriesInput" min="0" required />
+                </div>
+                <div class="form-btns">
+                    <button type="button" id="cancelBtn" class="edit-btn">Cancel</button>
+                    <button type="submit">Save</button>
+                    <button type="button" id="deleteBtn" class="delete-btn">Delete</button>
+                </div>
             </form>
+            <ul id="mealsList" class="meals-list"></ul>
             <button>Clear All</button>
-            <ul>
-                <li>
-                    <div>
-                        <span>apple:</span>
-                        <span>53 calories</span>
-                    </div>
-                    <button>Edit</button>
-                </li>
-            </ul>
         </div>
     </div>
 
     <template id="listItemTemplate">
-        <li>
-
+        <li class="list-item">
+            <div class="list-content">
+                <div><span class="meal-display"></span>: </div>
+                <div><span class="calories-display"></span> calories</div>
+            </div>
+            <button class="edit-meal-btn">Edit</button>
         </li>
     </template>
 

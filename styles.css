@@ -3,3 +3,19 @@
     text-align: center;
 }
 
+.list-item {
+    display: flex;
+}
+
+.list-content {
+
+}
+
+.meal-id-input {
+    display: none;
+}
+
+.meal-form[data-mode="add"] .edit-btn,
+.meal-form[data-mode="add"] .delete-btn {
+    display: none;
+}
