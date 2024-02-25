@@ -140,6 +140,11 @@ function handleDeleteBtnClick() {
     let index = caloriesData.meals.findIndex(meal => meal.id == mealIdInput.value);
 
     if(index > -1) {
+        // update total 
+        caloriesData.total -= +caloriesInput.value;
+        totalDisplay.textContent = caloriesData.total;
+
+        // update list
         caloriesData.meals.splice(index, 1);
         localStorage.setItem(STORAGE_KEY, JSON.stringify(caloriesData));
 
