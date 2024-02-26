@@ -1,4 +1,5 @@
 const STORAGE_KEY = 'calories-app';
+
 const goalSetupDialog = document.querySelector('#goalSetupDialog');
 const goalForm = document.querySelector('#goalForm');
 const totalDisplay = document.querySelector('#total');
@@ -19,6 +20,7 @@ mealForm.addEventListener('submit', handleMealFormSubmit);
 mealsList.addEventListener('click', handleOnMealsListClick);
 mealForm.querySelector('#deleteBtn').addEventListener('click', handleDeleteBtnClick);
 mealForm.querySelector('#cancelBtn').addEventListener('click', handleCancelBtnClick);
+document.querySelector('#clearAllBtn').addEventListener('click', handleClearAllBtnClick);
 
 init();
 
@@ -32,22 +34,21 @@ function init() {
         totalDisplay.textContent = caloriesData.total;
         caloriesData.meals.map(meal => renderListItem(meal));
     } else {
+        caloriesData = {
+            total: 0,
+            goal: goalInput,
+            meals: []
+        };
         goalSetupDialog.classList.add('active');
     }
 }
 
 function handleGoalFormSubmit(e) {
     e.preventDefault();
-    goalSetupDialog.classList.remove('active');
+    goalSetupDialog.classList.remove('active'); // close modal
 
-    const goalInput = document.querySelector('#goalInput').value;
-    caloriesData = {
-        total: 0,
-        goal: goalInput,
-        meals: []
-    };
-
-    goal.textContent  = caloriesData.goal;
+    caloriesData.goal = document.querySelector('#goalInput').value;
+    goal.textContent = caloriesData.goal;
 
     localStorage.setItem(STORAGE_KEY, JSON.stringify(caloriesData));
 }
@@ -153,4 +154,13 @@ function handleDeleteBtnClick() {
         mealForm.reset(); // reset form
         mealForm.dataset.mode = 'add'; // hide editing buttons
     }
+}
+
+function handleClearAllBtnClick() {
+    caloriesData.meals = [];
+    caloriesData.total = 0;
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(caloriesData));
+    
+    totalDisplay.textContent = caloriesData.total;
+    mealsList.innerHTML = '';
 }
