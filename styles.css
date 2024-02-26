@@ -77,6 +77,31 @@ circle.fg {
     stroke: #5394fd;
 }
 
+/* --- Progress block --- */
+
+.progress {
+    color: var(--accent-text-color);
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+}
+
+.edit-goal-btn {
+    margin-left: 10px;
+    border: none;
+    width: 18px;
+    height: 18px;
+    background: url(./assets/icons8-edit-48.png) no-repeat;
+    background-position: center;
+    background-size: 18px 18px;
+    cursor: pointer;
+    transition: .2s linear;
+}
+
+.edit-goal-btn:hover {
+    opacity: .8;
+}
+
 /* --- Meal form styles --- */
 
 .meal-id-input {

@@ -38,10 +38,9 @@
                     ></text>
                 </svg>
             </div>
-            <div>
-                <span id="total">0</span>/<span id="goal">0</span>
-                Calories
-                <button id="editGoalBtn">Edit Goal</button>
+            <div class="progress">
+                <div><span id="total">0</span>/<span id="goal">0</span> Calories</div>
+                <button id="editGoalBtn" class="edit-goal-btn" title="Edit Goal"></button>
             </div>
         </div>
         <form id="mealForm" data-mode="add" class="meal-form">
@@ -66,7 +65,7 @@
                 <div><span class="meal-display"></span>: </div>
                 <div><span class="calories-display"></span> calories</div>
             </div>
-            <button class="edit-meal-btn"></button>
+            <button class="edit-meal-btn" title="Edit Meal"></button>
         </li>
     </template>
 
