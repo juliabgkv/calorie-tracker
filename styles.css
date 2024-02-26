@@ -37,6 +37,48 @@ body {
     color: var(--accent-text-color);
 }
 
+/* --- Circle progress bar --- */
+
+.circle-container {
+    text-align: center;
+    padding: 1rem;
+}
+
+circle.fg {
+    transform: rotate(-90deg);
+    transform-origin: 50px 50px;
+}
+
+.circular-progress {
+    --size: 100px;
+    --half-size: calc(var(--size) / 2);
+    --stroke-width: 10px;
+    --radius: calc((var(--size) - var(--stroke-width)) / 2);
+    --circumference: calc(var(--radius) * pi * 2);
+    --dash: calc((var(--progress) * var(--circumference)) / 100);
+}
+
+.circular-progress circle {
+    stroke-width: var(--stroke-width);
+    fill: none;
+    stroke-linecap: round;
+}
+  
+.circular-progress circle.bg {
+    stroke: #ddd;
+}
+
+.circular-progress circle.fg {
+    opacity: 0;
+    transform: rotate(-90deg);
+    transform-origin: var(--half-size) var(--half-size);
+    stroke-dasharray: var(--dash) calc(var(--circumference) - var(--dash));
+    transition: stroke-dasharray 0.3s linear 0s;
+    stroke: #5394fd;
+}
+
+/* --- Meal form styles --- */
+
 .meal-id-input {
     display: none;
 }
@@ -126,6 +168,8 @@ body {
     background: #ea3642;
 }
 
+/* --- Meals list styles --- */
+
 .meals-list {
     color: #1a2730;
     padding-left: 0;
@@ -199,6 +243,8 @@ body {
     transition: .2s linear;
 }
 
+/* --- Modal window styles --- */
+
 .modal {
     opacity: 0;
     transform: translateY(-100%);
@@ -261,7 +307,7 @@ body {
     outline: none;
 }
 
-.goal-continue-btn {
+.modal .goal-continue-btn {
     border: none;
     background-color: #2C8A3E;
 }

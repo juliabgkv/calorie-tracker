@@ -10,6 +10,9 @@ const mealInput = document.querySelector('#mealInput');
 const caloriesInput = document.querySelector('#caloriesInput');
 const listItemTemplate = document.querySelector('#listItemTemplate');
 const mealsList = document.querySelector('#mealsList');
+const circularProgress = document.querySelector('#circularProgress');
+const circleFg = document.querySelector('#circularProgress .fg');
+const persentsDisplay = document.querySelector('#persents');
 
 let caloriesData = null;
 let editingCalories = 0;
@@ -34,6 +37,7 @@ function init() {
         goalDisplay.textContent = caloriesData.goal;
         totalDisplay.textContent = caloriesData.total;
         caloriesData.meals.map(meal => renderListItem(meal));
+        updateCircularProgressBar();
     } else {
         caloriesData = {
             total: 0,
@@ -56,6 +60,7 @@ function handleGoalFormSubmit(e) {
 
     // display new goal
     goalDisplay.textContent = caloriesData.goal;
+    updateCircularProgressBar();
 }
 
 function handleMealFormSubmit(e) {
@@ -103,6 +108,7 @@ function handleMealFormSubmit(e) {
 
         mealForm.dataset.mode = 'add'; // hide edit buttons
     }
+    updateCircularProgressBar();
     mealForm.reset();
 }
 
@@ -149,6 +155,7 @@ function handleDeleteBtnClick() {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(caloriesData));
 
         document.querySelectorAll(`li[data-item-id="${mealIdInput.value}"]`)[0].remove(); // remove node 
+        updateCircularProgressBar();
 
         resetMealForm();
     }
@@ -163,6 +170,7 @@ function handleClearAllBtnClick() {
     // render new data
     totalDisplay.textContent = caloriesData.total;
     mealsList.innerHTML = '';
+    updateCircularProgressBar();
 }
 
 function handleEditGoalBtnClick() {
@@ -173,4 +181,14 @@ function handleEditGoalBtnClick() {
 function resetMealForm() {
     mealForm.reset();
     mealForm.dataset.mode = 'add'; // hide editing buttons
+}
+
+function updateCircularProgressBar() {
+    let persents = (caloriesData.total == 0) ? 0 : Math.round((+caloriesData.total/+caloriesData.goal) * 100); //calc persents
+    circleFg.style.opacity = (caloriesData.total) == 0 ? '0' : '1'; // hide foreground
+    circleFg.style.stroke = persents > 100 ? '#ea3642' : '#5394fd'; // show red foreground when goal is exceeded
+
+    // render
+    circularProgress.style.setProperty('--progress', persents);
+    persentsDisplay.textContent = `${persents} %`;
 }
