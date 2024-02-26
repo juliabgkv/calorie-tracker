@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calorie Tracker</title>
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="icon" type="image/x-icon" href="./assets/calories.png">
+    <link rel="stylesheet" id="themeStylesheetLink" href="./css/themes/light.css" />
+    <link rel="stylesheet" href="./css/common.css" />
 </head>
 <body>
     <div id="goalSetupDialog" class="modal">
@@ -19,6 +21,10 @@
     <div class="container">
         <div class="header">
             <h1 class="logo">Calorie Tracker</h1>
+            <label class="theme-toggler">
+                <input type="checkbox" id="themeToggler" />
+                <span class="slider"></span>
+            </label>
         </div>
         <div>
             <div class="circle-container">
@@ -39,7 +45,7 @@
                 </svg>
             </div>
             <div class="progress">
-                <div><span id="total">0</span>/<span id="goal">0</span> Calories</div>
+                <div><span id="total">0</span> / <span id="goal">0</span> Calories</div>
                 <button id="editGoalBtn" class="edit-goal-btn" title="Edit Goal"></button>
             </div>
         </div>
@@ -70,5 +76,6 @@
     </template>
 
     <script src="./app.js"></script>
+    <script src="./themeSwitch.js"></script>
 </body>
 </html>

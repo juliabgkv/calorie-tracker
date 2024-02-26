@@ -1,0 +1,9 @@
+:root {
+    --backround-color: #fefefe;
+    --container-background-color: #F5F5F5;
+    --primary-text-color: #4f4f52;
+    --medium-text-color: #7f7f7f;
+    --secondary-text-color: #9A9A9A;
+    --box-shadow: 0px 2px 4px 0px rgb(212, 212, 212);
+    --modal-backdrop-color: rgba(255, 255, 255, .6);
+}

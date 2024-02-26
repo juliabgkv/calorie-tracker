@@ -171,6 +171,9 @@ function handleClearAllBtnClick() {
     totalDisplay.textContent = caloriesData.total;
     mealsList.innerHTML = '';
     updateCircularProgressBar();
+
+    // reset form if it was in edit mode
+    if(mealForm.dataset.mode === 'edit') resetMealForm();
 }
 
 function handleEditGoalBtnClick() {
