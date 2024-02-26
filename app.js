@@ -14,7 +14,7 @@ let caloriesData = null;
 let editingCalories = 0;
 
 goalForm.addEventListener('submit', handleGoalFormSubmit);
-editGoalBtn.addEventListener('click', () => goalSetupDialog.showModal());
+editGoalBtn.addEventListener('click', () => goalSetupDialog.classList.add('active'));
 mealForm.addEventListener('submit', handleMealFormSubmit);
 mealsList.addEventListener('click', handleOnMealsListClick);
 mealForm.querySelector('#deleteBtn').addEventListener('click', handleDeleteBtnClick);
@@ -32,13 +32,13 @@ function init() {
         totalDisplay.textContent = caloriesData.total;
         caloriesData.meals.map(meal => renderListItem(meal));
     } else {
-        goalSetupDialog.showModal();
+        goalSetupDialog.classList.add('active');
     }
 }
 
 function handleGoalFormSubmit(e) {
     e.preventDefault();
-    goalSetupDialog.close();
+    goalSetupDialog.classList.remove('active');
 
     const goalInput = document.querySelector('#goalInput').value;
     caloriesData = {

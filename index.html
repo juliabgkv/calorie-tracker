@@ -7,13 +7,15 @@
     <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
-    <dialog id="goalSetupDialog" class="dialog">
-        <p>Please, set up your calories goal per day:</p>
-        <form method="dialog" id="goalForm">
-            <input type="number" id="goalInput" value="2000" step="100" min="1200" max="5000" />
-            <button>Continue</button>
-        </form>
-    </dialog>
+    <div id="goalSetupDialog" class="modal">
+        <div class="modal-content">
+            <p>Please, set up your calories goal per day:</p>
+            <form id="goalForm" class="goal-form">
+                <input type="number" id="goalInput" value="2000" step="100" min="1200" max="5000" />
+                <button class="form-btn goal-continue-btn">Continue</button>
+            </form>
+        </div>
+    </div>
     <div class="container">
         <div class="header">
             <h1 class="logo">Calorie Tracker</h1>
@@ -22,6 +24,7 @@
             <!-- circle with goal progress -->
             <div>
                 <span id="total">0</span>/<span id="goal">0</span>
+                Calories
                 <button id="editGoalBtn">Edit Goal</button>
             </div>
         </div>
