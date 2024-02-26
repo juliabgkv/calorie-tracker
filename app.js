@@ -1,25 +1,25 @@
 const STORAGE_KEY = 'calories-app';
 
 const goalSetupDialog = document.querySelector('#goalSetupDialog');
-const goalForm = document.querySelector('#goalForm');
 const totalDisplay = document.querySelector('#total');
 const goalDisplay = document.querySelector('#goal');
-const editGoalBtn = document.querySelector('#editGoalBtn');
 const mealForm = document.querySelector('#mealForm');
 const mealIdInput = document.querySelector('#mealIdInput');
+const goalInput = document.querySelector('#goalInput');
 const mealInput = document.querySelector('#mealInput');
 const caloriesInput = document.querySelector('#caloriesInput');
 const listItemTemplate = document.querySelector('#listItemTemplate');
 const mealsList = document.querySelector('#mealsList');
+
 let caloriesData = null;
 let editingCalories = 0;
 
-goalForm.addEventListener('submit', handleGoalFormSubmit);
-editGoalBtn.addEventListener('click', () => goalSetupDialog.classList.add('active'));
+document.querySelector('#goalForm').addEventListener('submit', handleGoalFormSubmit);
+document.querySelector('#editGoalBtn').addEventListener('click', handleEditGoalBtnClick);
 mealForm.addEventListener('submit', handleMealFormSubmit);
 mealsList.addEventListener('click', handleOnMealsListClick);
 mealForm.querySelector('#deleteBtn').addEventListener('click', handleDeleteBtnClick);
-mealForm.querySelector('#cancelBtn').addEventListener('click', handleCancelBtnClick);
+mealForm.querySelector('#cancelBtn').addEventListener('click', () => resetMealForm());
 document.querySelector('#clearAllBtn').addEventListener('click', handleClearAllBtnClick);
 
 init();
@@ -30,15 +30,18 @@ function init() {
     if(data) {
         caloriesData = JSON.parse(data);
 
+        // render data
         goalDisplay.textContent = caloriesData.goal;
         totalDisplay.textContent = caloriesData.total;
         caloriesData.meals.map(meal => renderListItem(meal));
     } else {
         caloriesData = {
             total: 0,
-            goal: goalInput,
+            goal: 0,
             meals: []
         };
+
+        // ask goal
         goalSetupDialog.classList.add('active');
     }
 }
@@ -47,10 +50,12 @@ function handleGoalFormSubmit(e) {
     e.preventDefault();
     goalSetupDialog.classList.remove('active'); // close modal
 
-    caloriesData.goal = document.querySelector('#goalInput').value;
-    goal.textContent = caloriesData.goal;
-
+    // update goal and save
+    caloriesData.goal = goalInput.value;
     localStorage.setItem(STORAGE_KEY, JSON.stringify(caloriesData));
+
+    // display new goal
+    goalDisplay.textContent = caloriesData.goal;
 }
 
 function handleMealFormSubmit(e) {
@@ -60,20 +65,18 @@ function handleMealFormSubmit(e) {
         const newListItem = {
             id: new Date().valueOf(),
             meal: mealInput.value.trim(),
-            calories: +caloriesInput.value.trim()
+            calories: +caloriesInput.value
         };
 
-        // update total calories
+        // update and save new data
         caloriesData.total += newListItem.calories;
-        totalDisplay.textContent = caloriesData.total;
-
         caloriesData.meals.push({...newListItem});
         localStorage.setItem(STORAGE_KEY, JSON.stringify(caloriesData));
-    
-        mealForm.reset();
-    
-        //render list item
+
+        //render new data
+        totalDisplay.textContent = caloriesData.total;
         renderListItem(newListItem);
+
     } else if(mealForm.dataset.mode === 'edit') {
         const editedListItem = {
             id: mealIdInput.value,
@@ -84,27 +87,23 @@ function handleMealFormSubmit(e) {
         // update total calories
         const diff = editedListItem.calories - editingCalories;
         caloriesData.total += diff;
-        totalDisplay.textContent = caloriesData.total;
         editingCalories = 0;
 
         // replace old item with edited item
         let index = caloriesData.meals.findIndex(meal => meal.id == mealIdInput.value);
         caloriesData.meals[index] = {...editedListItem};
         
-        // save in localstorage
+        // save new data
         localStorage.setItem(STORAGE_KEY, JSON.stringify(caloriesData));
 
-        let data = localStorage.getItem(STORAGE_KEY);
-        caloriesData = JSON.parse(data);
-
-        mealForm.reset();
-        mealForm.dataset.mode = 'add';
-
         /// render updated list
+        totalDisplay.textContent = caloriesData.total;
         mealsList.innerHTML = '';
         caloriesData.meals.map(meal => renderListItem(meal));
-    }
 
+        mealForm.dataset.mode = 'add'; // hide edit buttons
+    }
+    mealForm.reset();
 }
 
 function renderListItem(item) {
@@ -122,19 +121,19 @@ function handleOnMealsListClick(e) {
         const currElementId = e.target.closest('.list-item').dataset.itemId;
         const currItem = caloriesData.meals.find(meal => meal.id == currElementId);
 
+        // display editing data in form
         mealIdInput.value = currItem.id;
         mealInput.value = currItem.meal;
         caloriesInput.value = currItem.calories;
 
-        editingCalories = currItem.calories; // save value to calculate after saving
+        editingCalories = currItem.calories; // save value to calculate total after saving
 
         mealForm.dataset.mode = 'edit';
     }
 }
 
 function handleCancelBtnClick() {
-    mealForm.reset(); // reset form
-    mealForm.dataset.mode = 'add'; // hide editing buttons
+    resetMealForm();
 }
 
 function handleDeleteBtnClick() {
@@ -151,16 +150,27 @@ function handleDeleteBtnClick() {
 
         document.querySelectorAll(`li[data-item-id="${mealIdInput.value}"]`)[0].remove(); // remove node 
 
-        mealForm.reset(); // reset form
-        mealForm.dataset.mode = 'add'; // hide editing buttons
+        resetMealForm();
     }
 }
 
 function handleClearAllBtnClick() {
+    // set new values and save
     caloriesData.meals = [];
     caloriesData.total = 0;
     localStorage.setItem(STORAGE_KEY, JSON.stringify(caloriesData));
-    
+
+    // render new data
     totalDisplay.textContent = caloriesData.total;
     mealsList.innerHTML = '';
+}
+
+function handleEditGoalBtnClick() {
+    goalInput.value = caloriesData.goal; //display current goal
+    goalSetupDialog.classList.add('active'); // show modal window
+}
+
+function resetMealForm() {
+    mealForm.reset();
+    mealForm.dataset.mode = 'add'; // hide editing buttons
 }

@@ -5,7 +5,6 @@
     --accent-text-color: #406640;
 }
 
-
 body {
     margin: 0;
     padding: 1rem;
@@ -65,7 +64,7 @@ body {
     width: 45%;
     border: none;
     border-bottom: 1px solid var(--accent-text-color);
-    background-color: #F3F5F9;
+    background-color: #f0f0f0;
 }
 
 .form-inputs > input:-webkit-autofill,
@@ -202,8 +201,8 @@ body {
 
 .modal {
     opacity: 0;
-    transform: translateX(-100%);
-    transition: .5s ease-in;
+    transform: translateY(-100%);
+    transition: .3s linear;
 }
 
 .modal {
@@ -219,7 +218,7 @@ body {
 
 .modal.active {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateY(0);
 }
 
 .modal .modal-content {
