@@ -30,6 +30,7 @@ Light mode:
 ![App Screenshot](https://raw.githubusercontent.com/juliabgkv/calorie-tracker/main/assets/screenshots/Light.png)
 
 Dark mode:
+
 ![App Screenshot](https://raw.githubusercontent.com/juliabgkv/calorie-tracker/main/assets/screenshots/Dark.png)
 
 
