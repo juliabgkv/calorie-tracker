@@ -2,7 +2,9 @@
 # Calorie Tracker
 
 A minimalist app that will help you track your daily calorie intake. 
-You can add, edit or delete meals. Calories summarize and display in progress block with circle progress bar to indicate how many persents of daily norm you`ve been eaten per day. Total daily calories can be chanched. Also this app has light and dark modes.
+You can add, edit or delete meals. Calories summarize and display in progress block with circle progress bar to indicate how many persents of daily norm you`ve been eaten per day. Total daily calories can be chanched. Also this app has light and dark modes, your theme choose will be restored after refreshing page (a theme select stores in localStorage).
+
+**All data saves in localStorage.**
 
 Live Demo: https://juliabgkv.github.io/calorie-tracker/
 
