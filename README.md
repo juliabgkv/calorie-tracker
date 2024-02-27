@@ -27,9 +27,9 @@ Live Demo: https://juliabgkv.github.io/calorie-tracker/
 ## Screenshots 📸
 Light mode:
 
-![App Screenshot](https://raw.githubusercontent.com/juliabgkv/calorie-tracker/8de645aaa2dfb5ad78002e82a9d619ce60420f84/assets/screenshots/Screenshot_CalorieTracker_LightMode.png)
+![App Screenshot](https://raw.githubusercontent.com/juliabgkv/calorie-tracker/main/assets/screenshots/Light.png)
 
 Dark mode:
-![App Screenshot](https://raw.githubusercontent.com/juliabgkv/calorie-tracker/8de645aaa2dfb5ad78002e82a9d619ce60420f84/assets/screenshots/Screenshot_CalorieTracker_DarkMode.png)
+![App Screenshot](https://raw.githubusercontent.com/juliabgkv/calorie-tracker/main/assets/screenshots/Dark.png)
 
 
