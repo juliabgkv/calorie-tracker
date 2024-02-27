@@ -146,8 +146,8 @@ function handleDeleteBtnClick() {
     let index = caloriesData.meals.findIndex(meal => meal.id == mealIdInput.value);
 
     if(index > -1) {
-        // update total 
-        caloriesData.total -= +caloriesInput.value;
+        // update total
+        caloriesData.total -= +caloriesData.meals[index].calories;
         totalDisplay.textContent = caloriesData.total;
 
         // update list
