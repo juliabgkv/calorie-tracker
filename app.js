@@ -1,29 +1,29 @@
 const STORAGE_KEY = 'calories-app';
 
-const goalSetupDialog = document.querySelector('#goalSetupDialog');
-const totalDisplay = document.querySelector('#total');
-const goalDisplay = document.querySelector('#goal');
-const mealForm = document.querySelector('#mealForm');
-const mealIdInput = document.querySelector('#mealIdInput');
-const goalInput = document.querySelector('#goalInput');
-const mealInput = document.querySelector('#mealInput');
-const caloriesInput = document.querySelector('#caloriesInput');
-const listItemTemplate = document.querySelector('#listItemTemplate');
-const mealsList = document.querySelector('#mealsList');
-const circularProgress = document.querySelector('#circularProgress');
+const goalSetupDialog = document.getElementById('goalSetupDialog');
+const totalDisplay = document.getElementById('total');
+const goalDisplay = document.getElementById('goal');
+const mealForm = document.getElementById('mealForm');
+const mealIdInput = document.getElementById('mealIdInput');
+const goalInput = document.getElementById('goalInput');
+const mealInput = document.getElementById('mealInput');
+const caloriesInput = document.getElementById('caloriesInput');
+const listItemTemplate = document.getElementById('listItemTemplate');
+const mealsList = document.getElementById('mealsList');
+const circularProgress = document.getElementById('circularProgress');
 const circleFg = document.querySelector('#circularProgress .fg');
-const persentsDisplay = document.querySelector('#persents');
+const persentsDisplay = document.getElementById('persents');
 
 let caloriesData = null;
 let editingCalories = 0;
 
-document.querySelector('#goalForm').addEventListener('submit', handleGoalFormSubmit);
-document.querySelector('#editGoalBtn').addEventListener('click', handleEditGoalBtnClick);
+document.getElementById('goalForm').addEventListener('submit', handleGoalFormSubmit);
+document.getElementById('editGoalBtn').addEventListener('click', handleEditGoalBtnClick);
 mealForm.addEventListener('submit', handleMealFormSubmit);
 mealsList.addEventListener('click', handleOnMealsListClick);
 mealForm.querySelector('#deleteBtn').addEventListener('click', handleDeleteBtnClick);
 mealForm.querySelector('#cancelBtn').addEventListener('click', () => resetMealForm());
-document.querySelector('#clearAllBtn').addEventListener('click', handleClearAllBtnClick);
+document.getElementById('clearAllBtn').addEventListener('click', handleClearAllBtnClick);
 
 init();
 
