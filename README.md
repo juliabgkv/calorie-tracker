@@ -1,36 +1,34 @@
-
 # Calorie Tracker
 
-A minimalist app that will help you track your daily calorie intake. You can add, edit or delete meals. Calories summarize and display in progress block with circle progress bar to indicate how many percent of daily norm you`ve been eaten per day. Total daily calories can be changed. Also this app has light and dark modes, your theme choice will be restored after refreshing the page (a theme select stores in localStorage).
+A lightweight calorie tracking application built with vanilla JavaScript.
 
+Users can add, edit, and delete meals, set a custom daily calorie target, and track their progress throughout the day. Application data and theme preferences are persisted in `localStorage`.
 
-**All data saves in localStorage.**
+## Features
 
-Live Demo: https://juliabgkv.github.io/calorie-tracker/
+* Add, edit, and delete meals
+* Track total daily calorie intake
+* Set a custom daily calorie target
+* Visual calorie progress indicator
+* Light and dark themes
+* Theme preference persistence
+* Data persistence with `localStorage`
 
+## Live Demo
 
-## Tools 🛠
+https://juliabgkv.github.io/calorie-tracker/
 
-- HTML
+## Tech Stack
 
-- CSS
+* HTML5
+* CSS3
+* JavaScript
 
-- JavaScript
+## Technical Highlights
 
-
-## Lessons Learned 🧠
-
-- How to implement theme switching
-- How to work with CSS variables
-
-
-## Screenshots 📸
-Light mode:
-
-![App Screenshot](https://raw.githubusercontent.com/juliabgkv/calorie-tracker/main/assets/screenshots/Light.png)
-
-Dark mode:
-
-![App Screenshot](https://raw.githubusercontent.com/juliabgkv/calorie-tracker/main/assets/screenshots/Dark.png)
-
+* CRUD operations with vanilla JavaScript
+* State persistence using `localStorage`
+* Dynamic calorie progress calculations
+* CSS custom properties for theme management
+* Persistent light and dark mode preference
 
